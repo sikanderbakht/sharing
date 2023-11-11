@@ -1,22 +1,11 @@
-Hi 
+I hope this message finds you well. I have a few queries regarding the CDD flow:
 
-Liv.
+On the "Employment Details Screen," if the user selects any option other than "Salaried," do we still need to inquire about their monthly salary?
 
- 
+In the DAO flow, we have "Work Information" and "Work Address" screens. However, if the user's type is Student, Unemployed, or Housewife, should we still display the "Work Info" and "Work Address" screens in the DAO flow?
 
-(Shruthi
+How should back navigation be handled when transitioning from the CDD flow to the DAO flow? Currently, in DAO, clicking the back button exits the DAO flow.
 
- 
+From which specific step should we initiate the CDD flow when transitioning from the DAO flow?
 
-Sashidharan)
-
-,
-
-We have some queries regarding CDD flow:
-
-
-
-On "Employment Details Screen" if user selects any option other than "Salaried" do we need to ask his monthly Salary?
-In DAO flow, we have "Work Information" and "Work Address" screens. But if user type is Student, Unemployed, Housewife. Should we show user "Work Info" and "Work Address" screens in the DAO flow?
-How back navigation will be handled when moving CDD flow to DAO flow? (Currently, in DAO on click back button app exits the DAO flow.)
-From what step exactly we need to start CDD flow from DAO flow?
+Your clarification on these points would be greatly appreciated.
