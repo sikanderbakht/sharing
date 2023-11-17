@@ -1,11 +1,618 @@
-I hope this message finds you well. I have a few queries regarding the CDD flow:
+<action
+            android:id="@+id/action_cdd"
+            app:destination="@+id/cdd_navigation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
 
-On the "Employment Details Screen," if the user selects any option other than "Salaried," do we still need to inquire about their monthly salary?
+            <argument
+                android:name="kycData"
+                android:defaultValue="@null"
+                app:argType="com.emiratesnbd.mobile.ui.home.fragment.cdd.model.KycData"
+                app:nullable="true" />
 
-In the DAO flow, we have "Work Information" and "Work Address" screens. However, if the user's type is Student, Unemployed, or Housewife, should we still display the "Work Info" and "Work Address" screens in the DAO flow?
+            <argument
+                android:name="userJourneyType"
+                android:defaultValue="NONE"
+                app:argType="string"
+                app:nullable="true" />
 
-How should back navigation be handled when transitioning from the CDD flow to the DAO flow? Currently, in DAO, clicking the back button exits the DAO flow.
+            <argument
+                android:name="flowIndicator"
+                android:defaultValue="NONE"
+                app:argType="string"
+                app:nullable="true" />
+        </action>
 
-From which specific step should we initiate the CDD flow when transitioning from the DAO flow?
 
-Your clarification on these points would be greatly appreciated.
+val navGraph = findNavController().navInflater.inflate(
+                    R.navigation.cdd_navigation
+                )
+                navGraph.startDestination = R.id.label_tax_and_banking_details_menu
+                findNavController().graph = navGraph
+                findNavController().navigate(WorkInfoFragmentDirections.actionCdd())
+
+
+
+-------- CDD Naviation --------
+
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cdd_navigation"
+    app:startDestination="@id/label_update_information">
+
+    <fragment
+        android:id="@+id/label_update_information"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.updateinformation.UpdateInformationFragment">
+
+        <argument
+            android:name="kycData"
+            android:defaultValue="@null"
+            app:argType="com.emiratesnbd.mobile.ui.home.fragment.cdd.model.KycData"
+            app:nullable="true" />
+
+        <argument
+            android:name="userJourneyType"
+            android:defaultValue="NONE"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="flowIndicator"
+            android:defaultValue="NONE"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="showCDDUpdate"
+            android:defaultValue="true"
+            app:argType="boolean"/>
+
+        <action
+            android:id="@+id/action_menu"
+            app:destination="@+id/label_tax_and_banking_details_menu"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/cdd_navigation"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_check_now"
+            app:destination="@+id/label_tax_and_banking_details_menu"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_tax_and_banking_details_menu"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.taxandbankingdetailsmenu.TaxAndBankingDetailsMenuFragment"
+        tools:layout="@layout/fragment_tax_and_banking_details_menu">
+
+        <deepLink
+            android:id="@+id/cddUpdateDeeplink"
+            app:uri="android-app://dashboard/profile-details-validation" />
+
+        <argument
+            android:name="kycData"
+            android:defaultValue="@null"
+            app:argType="com.emiratesnbd.mobile.ui.home.fragment.cdd.model.KycData"
+            app:nullable="true" />
+
+        <argument
+            android:name="userJourneyType"
+            android:defaultValue="NONE"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="flowIndicator"
+            android:defaultValue="NONE"
+            app:argType="string"
+            app:nullable="true" />
+
+        <action
+            android:id="@+id/action_residency_details"
+            app:destination="@+id/residency_details_navigation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_tax_details"
+            app:destination="@+id/tax_details_navigation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="flowType"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+        </action>
+
+        <action
+            android:id="@+id/action_cdd_flow"
+            app:destination="@+id/label_multi_nationality"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="skipSuccessPageAfterCddUpdate"
+                android:defaultValue="false"
+                app:argType="boolean" />
+        </action>
+
+        <action
+            android:id="@+id/action_dao_cdd_flow"
+            app:destination="@+id/label_source_of_income"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+<!--        <action-->
+<!--            android:id="@+id/action_wealth_eligibility_error"-->
+<!--            app:destination="@+id/label_wealth_info"-->
+<!--            app:enterAnim="@anim/slide_up"-->
+<!--            app:exitAnim="@anim/fade_custom_hide"-->
+<!--            app:popEnterAnim="@anim/fade_custom_show"-->
+<!--            app:popExitAnim="@anim/slide_down" />-->
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_multi_nationality"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.nationality.NationalityFragment"
+        tools:layout="@layout/fragment_nationality">
+
+        <deepLink
+            android:id="@+id/cddUpdateDeeplink"
+            app:uri="android-app://dashboard/country-of-residence" />
+
+        <argument
+            android:name="skipSuccessPageAfterCddUpdate"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <action
+            android:id="@+id/action_system_code_selection"
+            app:destination="@+id/label_system_code_selection"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_custom_hide"
+            app:popEnterAnim="@anim/fade_custom_show"
+            app:popExitAnim="@anim/slide_down" />
+
+        <action
+            android:id="@+id/action_normal_residency"
+            app:destination="@+id/label_normal_residency"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_system_code_selection"
+        android:name="com.emiratesnbd.mobile.ui.transfers.systemcodes.SystemCodeSelectionFragment"
+        tools:layout="@layout/fragment_system_code_selection">
+
+        <argument
+            android:name="systemCodeSelectionBundleItem"
+            app:argType="com.emiratesnbd.mobile.ui.transfers.systemcodes.model.SystemCodeSelectionBundleItem"
+            app:nullable="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_normal_residency"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.normalresidency.NormalResidencyFragment"
+        tools:layout="@layout/fragment_country_residency">
+
+        <action
+            android:id="@+id/action_system_code_selection"
+            app:destination="@+id/label_system_code_selection"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_custom_hide"
+            app:popEnterAnim="@anim/fade_custom_show"
+            app:popExitAnim="@anim/slide_down" />
+
+        <action
+            android:id="@+id/action_work_details"
+            app:destination="@+id/label_work_information"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_work_information"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.workinformation.WorkInformationFragment"
+        tools:layout="@layout/fragment_work_information">
+        <action
+            android:id="@+id/action_source_of_income"
+            app:destination="@+id/label_source_of_income"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_source_of_income"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.sourceofincome.SourceOfIncomeFragment"
+        tools:layout="@layout/fragment_source_of_income">
+        <action
+            android:id="@+id/action_add_source"
+            app:destination="@+id/label_add_source"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_custom_hide"
+            app:popEnterAnim="@anim/fade_custom_show"
+            app:popExitAnim="@anim/slide_down" />
+
+        <action
+            android:id="@+id/action_bank_accounts"
+            app:destination="@+id/label_bank_accounts"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_add_source"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.sourceofincome.selectadditionalsource.AdditionalSourceFragment"
+        tools:layout="@layout/fragment_additional_source" />
+
+    <fragment
+        android:id="@+id/label_bank_accounts"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.bankaccounts.BankAccountsFragment"
+        tools:layout="@layout/fragment_bank_accounts">
+        <action
+            android:id="@+id/action_search_bank"
+            app:destination="@+id/label_search_bank"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_custom_hide"
+            app:popEnterAnim="@anim/fade_custom_show"
+            app:popExitAnim="@anim/slide_down" />
+        <action
+            android:id="@+id/action_edit_bank"
+            app:destination="@+id/label_add_bank"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_custom_hide"
+            app:popEnterAnim="@anim/fade_custom_show"
+            app:popExitAnim="@anim/slide_down" />
+        <action
+            android:id="@+id/action_net_worth"
+            app:destination="@+id/label_net_worth"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_credit_behaviour"
+            app:destination="@+id/label_credit_behaviour"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_search_bank"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.bankaccounts.searchbank.SearchBankFragment"
+        tools:layout="@layout/fragment_search_bank">
+
+        <argument
+            android:name="toolBarTitle"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="skipAddBank"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <action
+            android:id="@+id/action_add_bank"
+            app:destination="@+id/label_add_bank"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_custom_hide"
+            app:popEnterAnim="@anim/fade_custom_show"
+            app:popExitAnim="@anim/slide_down" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_add_bank"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.bankaccounts.addupdatebank.AddUpdateBankFragment"
+        tools:layout="@layout/fragment_add_update_bank">
+        <argument
+            android:name="bankAccountDetail"
+            android:defaultValue="@null"
+            app:argType="com.emiratesnbd.mobile.ui.home.fragment.cdd.bankaccounts.model.BankAccountDetail"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_credit_behaviour"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.anticipatedmontlytransactions.creditdebit.CreditDebitBehaviourFragment"
+        tools:layout="@layout/fragment_credit_behaviour">
+        <argument
+            android:name="isCredit"
+            android:defaultValue="true"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_system_code_selection"
+            app:destination="@+id/label_system_code_selection"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_custom_hide"
+            app:popEnterAnim="@anim/fade_custom_show"
+            app:popExitAnim="@anim/slide_down" />
+        <action
+            android:id="@+id/action_debit_behaviour"
+            app:destination="@+id/label_credit_behaviour"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_authenticate_security_pin"
+            app:destination="@+id/authenticate_smart_pin_navigation"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_custom_hide"
+            app:popEnterAnim="@anim/fade_custom_show"
+            app:popExitAnim="@anim/slide_down">
+            <argument
+                android:name="jobId"
+                android:defaultValue=" "
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/action_status"
+            app:destination="@+id/label_status"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_status"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.status.StatusFragment">
+        <argument
+            android:name="analyticsFlowName"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="doneButtonName"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="successImageCmsKey"
+            android:defaultValue=" "
+            app:argType="string" />
+
+        <argument
+            android:name="success"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="statusType"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="toolbarTitle"
+            android:defaultValue=" "
+            app:argType="string" />
+
+        <argument
+            android:name="title"
+            android:defaultValue=" "
+            app:argType="string" />
+
+        <argument
+            android:name="description"
+            android:defaultValue=" "
+            app:argType="string" />
+
+        <argument
+            android:name="bannerMessage"
+            android:defaultValue=" "
+            app:argType="string" />
+
+        <argument
+            android:name="bannerOtherMessage"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="referenceNumberTitle"
+            android:defaultValue=" "
+            app:argType="string" />
+
+        <argument
+            android:name="buttonReferenceNumberTitle"
+            android:defaultValue=" "
+            app:argType="string" />
+
+        <argument
+            android:name="seeAllRequestsTitle"
+            android:defaultValue=" "
+            app:argType="string" />
+
+        <argument
+            android:name="referenceNumber"
+            android:defaultValue=" "
+            app:argType="string" />
+
+        <argument
+            android:name="navigationId"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="hostNavigationId"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="secondaryButtonHostNavigationId"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="secondaryButtonNavigationId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_net_worth"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.networth.NetWorthFragment"
+        tools:layout="@layout/fragment_net_worth">
+
+        <action
+            android:id="@+id/action_initial_deposit_mode"
+            app:destination="@+id/label_initial_deposit_mode"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_initial_deposit_mode"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.cdd.initialdepositmode.InitialDepositModeFragment"
+        tools:layout="@layout/fragment_initial_deposit_mode">
+
+        <action
+            android:id="@+id/action_system_code_selection"
+            app:destination="@+id/label_system_code_selection"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_custom_hide"
+            app:popEnterAnim="@anim/fade_custom_show"
+            app:popExitAnim="@anim/slide_down" />
+
+
+        <action
+            android:id="@+id/action_select_bank"
+            app:destination="@+id/label_search_bank"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_custom_hide"
+            app:popEnterAnim="@anim/fade_custom_show"
+            app:popExitAnim="@anim/slide_down" />
+
+
+        <action
+            android:id="@+id/action_credit_behaviour"
+            app:destination="@+id/label_credit_behaviour"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/label_wealth_info"
+        android:name="com.emiratesnbd.mobile.ui.home.fragment.wealth.WealthInfoFragment"
+        tools:layout="@layout/fragment_wealth_info">
+
+        <argument
+            android:name="toolbarText"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="image"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="title"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="referenceTitle"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="description"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="disclaimer"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="navButtonText"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="showNavButton"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <argument
+            android:name="leftTopButtonDrawable"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
+        <argument
+            android:name="rightTopButtonDrawable"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
+        <argument
+            android:name="navigationId"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="navigateToDashboard"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+
+    </fragment>
+
+    <include app:graph="@navigation/authenticate_smart_pin_navigation" />
+    <include app:graph="@navigation/residency_details_navigation" />
+    <include app:graph="@navigation/tax_details_navigation" />
+</navigation>
+
+
