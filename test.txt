@@ -1,11 +1,10 @@
-. I am reaching out to bring to your attention an issue we are currently facing with the Pulse Secure VPN and its impact on our Android application, specifically during the initialization of the Jumio SDK.
+I am writing to report an issue we have encountered with the Jumio SDK and Pulse Secure VPN.
 
-As of yesterday, everything was functioning smoothly, but since this morning, we have been encountering an error that is hindering the proper functioning of the Jumio SDK. The error message we are receiving is: "We have encountered a network communication problem."
+Since this morning, we have been experiencing an error message "We have encountered a network communication problem" when initializing the Jumio SDK from the Android application. This error was not occurring prior to today.
 
-Considering that the issue coincides with the timeframe when we started experiencing difficulties, I suspect there might be an underlying problem with the Pulse Secure VPN. Our VPN connection is established, but the Jumio SDK is unable to initialize successfully.
+Based on our investigation, we believe that this issue may be related to the Pulse Secure VPN. When the VPN is connected, the Jumio SDK is unable to communicate with the Jumio servers.
 
-This issue is critical for our operations, and we would greatly appreciate your prompt assistance in resolving it. If there have been any recent updates or changes to the Pulse Secure VPN configuration, it would be helpful to know so that we can investigate further.
+This issue is causing significant disruptions to our workflow, as we are unable to verify user identities using the Jumio SDK.
 
-Please let me know if you require any additional information or if there are specific logs or details that would aid in diagnosing and addressing this issue. Your expertise and support in resolving this matter are invaluable to us.
+We would appreciate it if you could investigate this issue and provide us with a resolution as soon as possible.
 
-Thank you for your immediate attention to this matter. We look forward to a swift resolution.
