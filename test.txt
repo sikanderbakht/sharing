@@ -1,10 +1,1 @@
-I am writing to report an issue we have encountered with the Jumio SDK and Pulse Secure VPN.
-
-Since this morning, we have been experiencing an error message "We have encountered a network communication problem" when initializing the Jumio SDK from the Android application. This error was not occurring prior to today.
-
-Based on our investigation, we believe that this issue may be related to the Pulse Secure VPN. When the VPN is connected, the Jumio SDK is unable to communicate with the Jumio servers.
-
-This issue is causing significant disruptions to our workflow, as we are unable to verify user identities using the Jumio SDK.
-
-We would appreciate it if you could investigate this issue and provide us with a resolution as soon as possible.
-
+https://status.apac-1.jumio.ai/
