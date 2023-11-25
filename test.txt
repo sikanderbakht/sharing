@@ -1,18 +1,11 @@
- I am writing to bring to your attention an issue I have encountered while using the VPN app and attempting to access Jumio. Additionally, the Jumio SDK is throwing an error, and I would appreciate your assistance in resolving this matter.
+. I am reaching out to bring to your attention an issue we are currently facing with the Pulse Secure VPN and its impact on our Android application, specifically during the initialization of the Jumio SDK.
 
-Error Details:
-Error Message: "We have encountered a network communication problem."
+As of yesterday, everything was functioning smoothly, but since this morning, we have been encountering an error that is hindering the proper functioning of the Jumio SDK. The error message we are receiving is: "We have encountered a network communication problem."
 
-Error Details:
-Error Message: "We have encountered a network communication problem."
+Considering that the issue coincides with the timeframe when we started experiencing difficulties, I suspect there might be an underlying problem with the Pulse Secure VPN. Our VPN connection is established, but the Jumio SDK is unable to initialize successfully.
 
-Steps Taken:
+This issue is critical for our operations, and we would greatly appreciate your prompt assistance in resolving it. If there have been any recent updates or changes to the Pulse Secure VPN configuration, it would be helpful to know so that we can investigate further.
 
-Connected to VPN app successfully.
-Attempted to access Jumio.
-Received the error message mentioned above.
-This issue is impeding my workflow, and I believe it requires immediate attention. I have attached a screenshot of the error for your reference.
+Please let me know if you require any additional information or if there are specific logs or details that would aid in diagnosing and addressing this issue. Your expertise and support in resolving this matter are invaluable to us.
 
-Please let me know if there are any specific logs or additional information you require to troubleshoot this problem effectively. Your prompt assistance in resolving this matter is highly appreciated.
-
-Thank you for your attention to this issue, and I look forward to hearing from you soon.
+Thank you for your immediate attention to this matter. We look forward to a swift resolution.
