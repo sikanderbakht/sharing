@@ -1,1 +1,22 @@
 https://status.apac-1.jumio.ai/
+ Could not resolve all files for configuration ':app:livSitDebugRuntimeClasspath'.
+   > Failed to transform core-8.12.6.jar (com.moxtra:core:8.12.6) to match attributes {artifactType=enumerated-runtime-classes, org.gradle.category=library, org.gradle.libraryelements=jar, org.gradle.status=release, org.gradle.usage=java-runtime}.
+      > Could not find core-8.12.6.jar (com.moxtra:core:8.12.6).
+        Searched in the following locations:
+            http://engnexus.enbduat.com/repository/maven-moxtra-anony-eng/com/moxtra/core/8.12.6/core-8.12.6.jar
+   > Failed to transform cards-8.12.6.jar (com.moxtra:cards:8.12.6) to match attributes {artifactType=enumerated-runtime-classes, org.gradle.category=library, org.gradle.libraryelements=jar, org.gradle.status=release, org.gradle.usage=java-runtime}.
+      > Could not find cards-8.12.6.jar (com.moxtra:cards:8.12.6).
+        Searched in the following locations:
+            http://engnexus.enbduat.com/repository/maven-moxtra-anony-eng/com/moxtra/cards/8.12.6/cards-8.12.6.jar
+   > Failed to transform isdkcore-8.12.0.230524.jar (com.moxtra:isdkcore:8.12.0.230524) to match attributes {artifactType=enumerated-runtime-classes, org.gradle.category=library, org.gradle.libraryelements=jar, org.gradle.status=release, org.gradle.usage=java-runtime}.
+      > Could not find isdkcore-8.12.0.230524.jar (com.moxtra:isdkcore:8.12.0.230524).
+        Searched in the following locations:
+            http://engnexus.enbduat.com/repository/maven-moxtra-anony-eng/com/moxtra/isdkcore/8.12.0.230524/isdkcore-8.12.0.230524.jar
+   > Failed to transform mxtracer-8.10.0.0320.jar (com.moxtra:mxtracer:8.10.0.0320) to match attributes {artifactType=enumerated-runtime-classes, org.gradle.category=library, org.gradle.libraryelements=jar, org.gradle.status=release, org.gradle.usage=java-runtime}.
+      > Could not find mxtracer-8.10.0.0320.jar (com.moxtra:mxtracer:8.10.0.0320).
+        Searched in the following locations:
+            http://engnexus.enbduat.com/repository/maven-moxtra-anony-eng/com/moxtra/mxtracer/8.10.0.0320/mxtracer-8.10.0.0320.jar
+   > Failed to transform mxtp-8.10.0.0320.jar (com.moxtra:mxtp:8.10.0.0320) to match attributes {artifactType=enumerated-runtime-classes, org.gradle.category=library, org.gradle.libraryelements=jar, org.gradle.status=release, org.gradle.usage=java-runtime}.
+      > Could not find mxtp-8.10.0.0320.jar (com.moxtra:mxtp:8.10.0.0320).
+        Searched in the following locations:
+            http://engnexus.enbduat.com/repository/maven-moxtra-anony-eng/com/moxtra/mxtp/8.10.0.0320/mxtp-8.10.0.0320.jar
