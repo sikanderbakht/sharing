@@ -1,11 +1,7 @@
 fun isIBANNumberValid(number: String): Boolean {
-        if (number.isNotEmpty()) {
-            ibanNumber = number
-            if (!IBAN_REGEX.toRegex().matches(number) || number.length != IBAN_LENGTH) {
-                return false
-            }
-            return true
-        } else {
-            return false
-        }
+    if (number.isNotEmpty() && IBAN_REGEX.toRegex().matches(number) && number.length == IBAN_LENGTH) {
+        ibanNumber = number
+        return true
     }
+    return false
+}
