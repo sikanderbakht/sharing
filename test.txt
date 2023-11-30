@@ -7,22 +7,8 @@ fun isIBANNumberValid(number: String): Boolean {
 }
 
 
-Hi ⁠
+Hi Mayank Bhatnagar (IT),
 
-Mayank
+I've submitted a pull request for the Pre-Login-CDD-Flow and FTS changes. Kindly review at your earliest convenience.
 
- 
-
-Bhatnagar
-
- 
-
-(IT)
-
-,
-
-I have created the PR for Pre-Login-CDD-Flow and FTS changes. Please review.
-
-
-
-Thank you
+Thank you.
