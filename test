@@ -1,2 +1,1 @@
-As per my discussion with Liv. (Shruthi Sashidharan), this story is on hold for now. As of now there is one bug in the flow, when user navigate back to Login Screen. "Apply for an Account" and "Login" button are not visible. So in case of redirection to Login user will get stuck. For that reason, this story is on hold.
-
+the progress of this story is currently on hold. Presently, there is a critical bug in the flow that occurs when the user navigates back to the Login Screen. Specifically, the "Apply for an Account" and "Login" buttons become invisible, rendering the user unable to proceed. Due to this issue, the implementation of this story is temporarily halted until the mentioned bug is resolved.
