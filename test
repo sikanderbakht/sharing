@@ -1,1 +1,18 @@
-the progress of this story is currently on hold. Presently, there is a critical bug in the flow that occurs when the user navigates back to the Login Screen. Specifically, the "Apply for an Account" and "Login" buttons become invisible, rendering the user unable to proceed. Due to this issue, the implementation of this story is temporarily halted until the mentioned bug is resolved.
+fun uploadKycDocument(fileName: String, userLocationCode: String) {
+        val decodedBitmap = BitmapFactory.decodeFile(filePath)
+        val compressedFile = createImageFile(fileName)
+        decodedBitmap?.let {
+            writeBitmapToFile(decodedBitmap, compressedFile)
+        }
+
+        if (!compressedFile.sizeAllowed()) {
+            viewModelScope.launch {
+                enbdImageCompressor.compress(imageFile = compressedFile) {
+                    size(DAO_MAX_ALLOWED_UPLOAD_IMAGE_SIZE)
+                }
+            }
+        }
+        kycDocument = filePath
+        uploadManualCapture(UserCountryCode(userLocationCode))
+
+    }
