@@ -39,3 +39,6 @@ This issue is causing significant user inconvenience. I kindly request your prom
 Thank you for your swift action on this.
 
 Best regards,
+
+
+The problem arises when users navigate back to the login screen from the DAO flow or after logging out. In this scenario, the Login button and the "Apply for an Account" buttons are not visible. Users are unable to proceed with logging in again or continuing with the DAO flow without exiting the application.
