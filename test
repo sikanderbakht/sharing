@@ -42,3 +42,52 @@ Best regards,
 
 
 The problem arises when users navigate back to the login screen from the DAO flow or after logging out. In this scenario, the Login button and the "Apply for an Account" buttons are not visible. Users are unable to proceed with logging in again or continuing with the DAO flow without exiting the application.
+
+
+Changes: 
+DashboardHomeBannerExtension
+At Line 301:
+
+
+else if (cmsDashboardBanner?.id.equals(DashboardConstants.BannerType.ACTIVATE_DEBIT_CARD) && !cmsDashboardBanner?.displayInDashboard.safeGet()){
+                        cmsDashboardBanner?.let {
+                            DashboardBanner(
+                                bannerId = it.id,
+                                type = DashboardConstants.BannerType.ACTIVATE_DEBIT_CARD,
+                                title = it.title,
+                                description = it.description,
+                                buttonText = it.ctaText?.convertHtmlToText(),
+                                bannerType = BannerMessageTypes.BANNERICONINVISIBLE,
+                                isDismissible = it.dismissible,
+                                displayInDashboard = true,
+                                smartPassCheckEnabled = it.smartPassCheckEnabled,
+                                cmsMediaKey = DAOBANNERICON
+                            )
+                        }
+                    }
+
+LivXDashboardFragment: 
+Line 1098: DashboardConstants.BannerType.ACTIVATE_DEBIT_CARD -> {
+                    deepLinkManager.navigateToDestination(DeepLinkManager.ACTIVATE_DEBIT_CARD) // regarding this I have a doubt if this will work or not.
+                }
+
+DashboardConstants: 
+
+const val ACTIVATE_DEBIT_CARD = "cardsservice"
+
+
+
+DeepLinkManager:
+const val ACTIVATE_DEBIT_CARD = "/cardsservice?topic=service-new-request-debit-cards&subTopic=service-new-request-debit-cards-activate-card"
+
+
+
+
+
+
+
+
+
+
+
+
