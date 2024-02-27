@@ -82,6 +82,22 @@ const val ACTIVATE_DEBIT_CARD = "/cardsservice?topic=service-new-request-debit-c
 
 findNavController().popBackStack(R.id.label_prelogin, false)
 
+enum class DaoStagesEnums(val stage: Int) {
+    NATIONAL_ID_CAPTURE(R.id.label_eida_verification_fragment),
+    PASSPORT_CAPTURE(R.id.label_eida_verification_fragment),
+    SELFIE_CAPTURE(R.id.label_action_personalinfo_contact),
+    OTP_VERIFICATION_MOBILE(R.id.label_action_personalinfo_contact),
+    OTP_VERIFICATION_EMAIL(R.id.label_action_personalinfo_contact),
+    START_SOURCING(R.id.label_company_address_fragment),
+    DEMOGRAPHIC_DETAILS(R.id.label_kyc_information_fragment),
+    PROFESSIONAL_DETAILS(R.id.label_open_account_fragment),
+    PACKAGE_SELECTION(R.id.label_customize_your_card_fragment),
+    PRODUCT_SELECTION(R.id.label_customize_your_card_fragment),
+    APPLICATION_SUBMISSION(R.id.label_set_new_password_fragment),
+    T_AND_C(R.id.label_residency_information_fragment)
+}
+
+
 
 
 
