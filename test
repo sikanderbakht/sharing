@@ -80,6 +80,9 @@ const val ACTIVATE_DEBIT_CARD = "cardsservice"
 DeepLinkManager:
 const val ACTIVATE_DEBIT_CARD = "/cardsservice?topic=service-new-request-debit-cards&subTopic=service-new-request-debit-cards-activate-card"
 
+findNavController().popBackStack(R.id.label_prelogin, false)
+
+
 
 
 
