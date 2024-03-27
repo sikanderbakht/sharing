@@ -97,7 +97,31 @@ enum class DaoStagesEnums(val stage: Int) {
     T_AND_C(R.id.label_residency_information_fragment)
 }
 
-
+DashboardConstants.BannerType.ACTIVATE_DEBIT_CARD -> {
+                    injectedViewModel.cardManager.debitCards.value?.let { debitCards ->
+                        if (debitCards.peek().isNullOrEmpty()) {
+                            cardsViewModel.selectedCard.value =
+                                injectedViewModel.cardManager.creditCards.value?.peek()
+                                    ?.first { cardItem ->
+                                        cardItem.status == CardStatus.INACTIVE
+                                    }
+                        } else {
+                            cardsViewModel.selectedCard.value =
+                                debitCards.peek()
+                                    ?.first { cardItem ->
+                                        cardItem.status == CardStatus.INACTIVE
+                                    }
+                        }
+                    } ?: run {
+                        cardsViewModel.selectedCard.value =
+                            injectedViewModel.cardManager.creditCards.value?.peek()
+                                ?.first { cardItem ->
+                                    cardItem.status == CardStatus.INACTIVE
+                                }
+                    }
+                    cardFlowGraph.setStartDestination(R.id.label_activate_card)
+                    findNavController().navigate(R.id.action_global_cards_flow)
+                }
 
 
 
