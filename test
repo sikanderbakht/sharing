@@ -111,6 +111,42 @@ DashboardConstants.BannerType.ACTIVATE_DEBIT_CARD -> {
 }
 
 
+ <!-- custom_radio_button.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- First line -->
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Enroll for Switch Offer"
+        android:textColor="@android:color/black"/>
+
+    <!-- Second line -->
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="Earn up to AED"
+        android:textColor="@android:color/darker_gray"/>
+
+    <!-- Third line -->
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="Learn More"
+        android:textColor="@android:color/gray"/>
+</LinearLayout>
+
+
 
 
 
