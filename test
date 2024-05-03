@@ -149,6 +149,22 @@ DashboardConstants.BannerType.ACTIVATE_DEBIT_CARD -> {
 
 Could you please provide Rupali Vitthal Londhe (IT) with the tasks related to DAO so she can add them?
 
+f (it.isEmpty()) {
+                        setErrorLabelText(
+                            getCmsString(
+                                CmsKeyMapper.INVALIDAVGMONTHLYSALARY,
+                                arrayListOf(injectedViewModel.averageMonthlyBalance)
+                            )
+                        )
+                    } else {
+                        setErrorLabelText(
+                            getCmsString(
+                                CmsKeyMapper.LOWAVGMONTHLYSALARY,
+                                arrayListOf(injectedViewModel.averageMonthlyBalance)
+                            )
+                        )
+                    }
+
 
 
 
