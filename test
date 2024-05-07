@@ -237,6 +237,17 @@ val jsonString = """
     // Accessing the 'data' array
     val dataArray = jsonObject.getJSONArray("data")
 
+data class DaoTncBulletPointItem(
+    val description: String,
+    val links: ArrayList<BulletPointLinkItem>,
+)
+
+data class BulletPointLinkItem(
+    val text: String,
+    val isMandatory: Boolean = false,
+    val url: String
+)
+
 
 
 
