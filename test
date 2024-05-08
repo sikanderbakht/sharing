@@ -233,6 +233,60 @@ val jsonString = """
     val gson = Gson()
     val response = gson.fromJson(jsonString, ApiResponse::class.java)
 
+class DaoTncDynamicConsentViewHolder(
+    private val daoTncDynamicConsentItemBinding: DaoTncDynamicConsentItemBinding,
+) : BaseVH<DaoTncDynamicConsentItemResponse>(daoTncDynamicConsentItemBinding.root) {
+    override fun bindItem(item: DaoTncDynamicConsentItemResponse) {
+        daoTncDynamicConsentItemBinding.item = item
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.emiratesnbd.core.data.repository.dao.tnc.model.DaoTncDynamicConsentItemResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.enbd.uicomponents.components.textview.EnbdTextView
+            android:id="@+id/textViewKfsBullet"
+            style="@style/EnbdTextView.FontSize5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacingXSmall"
+            android:gravity="center"
+            android:text="@{item.bulletPoint}"
+            android:textColor="@color/gray800"
+            app:layout_constraintEnd_toStartOf="@+id/textViewKfs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewKfs"
+            tools:text="\u2022" />
+
+        <com.enbd.uicomponents.components.textview.EnbdTextView
+            android:id="@+id/textViewKfs"
+            style="@style/EnbdTextView.FontSize5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/gray800"
+            android:text="@{item.description}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textViewKfsBullet"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Welcome to a package that provides enhanced transactional benefits. Your New account comes with" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
 
 
 
