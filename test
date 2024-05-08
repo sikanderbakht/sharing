@@ -320,6 +320,18 @@ class DaoTncDynamicConsentViewHolder(
 
 
 
+fun areAllLinksNotMandatory(data: List<DaoTncDynamicConsentItemResponse>): Boolean {
+    for (item in data) {
+        for (link in item.links) {
+            if (link.isMandatory) {
+                // If any link is mandatory, return false
+                return false
+            }
+        }
+    }
+    // If no link is mandatory, return true
+    return true
+}
 
 
 
