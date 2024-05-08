@@ -287,6 +287,37 @@ class DaoTncDynamicConsentViewHolder(
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
+ class DaoTncDynamicConsentViewHolder(
+    private val daoTncDynamicConsentItemBinding: DaoTncDynamicConsentItemBinding,
+) : BaseVH<DaoTncDynamicConsentItemResponse>(daoTncDynamicConsentItemBinding.root) {
+
+    override fun bindItem(item: DaoTncDynamicConsentItemResponse) {
+        // Convert hyperlinks to clickable spannable text
+        val clickableDescription = makeDescriptionClickable(item)
+        daoTncDynamicConsentItemBinding.textViewKfs.text = clickableDescription
+        daoTncDynamicConsentItemBinding.textViewKfs.movementMethod = LinkMovementMethod.getInstance()
+    }
+
+    private fun makeDescriptionClickable(item: DaoTncDynamicConsentItemResponse): SpannableString {
+        val description = item.description
+        val spannableString = SpannableString(description)
+
+        // Iterate through links and make them clickable
+        item.links.forEach { link ->
+            val startIndex = description.indexOf(link.text)
+            val endIndex = startIndex + link.text.length
+            spannableString.setSpan(object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    // Handle link click event here
+                    // You may want to open the link or perform some other action
+                }
+            }, startIndex, endIndex, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+
+        return spannableString
+    }
+}
+
 
 
 
