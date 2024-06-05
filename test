@@ -336,6 +336,20 @@ fun areAllLinksNotMandatory(data: List<DaoTncDynamicConsentItemResponse>): Boole
 
 
 
+flavorDimensions  = ['app']
 
+    productFlavors {
+        enbd {
+            dimension 'app'
+            buildConfigField("String", "LOCAL_COUNTRY_CODE", "\"AE\"")
+            buildConfigField("String", "LOCAL_CURRENCY_CODE", "\"AED\"")
+        }
+
+        ei {
+            dimension 'app'
+            buildConfigField("String", "LOCAL_COUNTRY_CODE", "\"AE\"")
+            buildConfigField("String", "LOCAL_CURRENCY_CODE", "\"AED\"")
+        }
+    }
 
 
