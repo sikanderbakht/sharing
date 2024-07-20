@@ -353,3 +353,25 @@ flavorDimensions  = ['app']
     }
 
 
+
+fun mapCountriesListToItem(
+        countries: List<CmsCountry>?,
+        countriesToBeFiltered: Array<BasicRecyclerViewItem>?,
+        selectedCountryType: DaoSelectedCountryEnums
+    ): List<BasicRecyclerViewItem> {
+        return countries?.let {
+            val countriesList =
+                countrySelectionMapper.mapCmsCountryItemToBaseRecyclerItemDao(
+                    it,
+                    selectedCountryType
+                )
+            countriesToBeFiltered?.let { filteredCountries ->
+                countriesList.minus(filteredCountries.toList()) { country -> country.id }
+            } ?: run {
+                countrySelectionMapper.mapCmsCountryItemToBaseRecyclerItemDao(
+                    it,
+                    selectedCountryType
+                )
+            }
+        } ?: emptyList()
+    }
