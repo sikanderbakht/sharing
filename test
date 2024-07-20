@@ -375,3 +375,21 @@ fun mapCountriesListToItem(
             }
         } ?: emptyList()
     }
+
+fun mapCountriesListToItem(
+    countries: List<CmsCountry>?,
+    countriesToBeFiltered: Array<BasicRecyclerViewItem>?,
+    selectedCountryType: DaoSelectedCountryEnums
+): List<BasicRecyclerViewItem> {
+    if (countries == null) return emptyList()
+
+    val countriesList = countrySelectionMapper.mapCmsCountryItemToBaseRecyclerItemDao(
+        countries, selectedCountryType
+    )
+
+    return countriesToBeFiltered?.let { filteredCountries ->
+        countriesList.filterNot { country -> 
+            filteredCountries.any { it.id == country.id }
+        }
+    } ?: countriesList
+}
