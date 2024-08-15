@@ -440,3 +440,20 @@ If the table formatting is not preserving well in Microsoft Teams, using a more 
 ---
 
 This should retain the structure when pasted into Teams.
+
+Please update this table:
+
+1. https://jira.emiratesnbd.com/browse/TB-37961 --> Fixed, Remarks:API throws error for the first time second time it's successfull. It could be a backend issue. Its not relared to Modualrization.
+
+2. https://jira.emiratesnbd.com/browse/TB-37979 --> Unable to reproduce, Remarks: please attach video for reference
+
+3. https://jira.emiratesnbd.com/browse/TB-37980 --> Unable to reproduce, Remarks: Please attach video for the reference
+
+4.https://jira.emiratesnbd.com/browse/TB-37996 --> Fixed, Remarks: Fixed please check
+
+5. https://jira.emiratesnbd.com/browse/TB-37997 --> Fixed, Remarks: Fixed please check
+
+6. https://jira.emiratesnbd.com/browse/TB-38128 --> Existing issue, Remarks: This is an existing issue. Tested on the latest regression build
+
+7. https://jira.emiratesnbd.com/browse/TB-38123 --> In Progress, Remarks: Not able to reproduce till now, becuase of DAO drop off. Will try to reproduce and verify
+
