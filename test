@@ -457,3 +457,29 @@ Please update this table:
 
 7. https://jira.emiratesnbd.com/browse/TB-38123 --> In Progress, Remarks: Not able to reproduce till now, becuase of DAO drop off. Will try to reproduce and verify
 
+
+
+Here is the table with the given information:
+Here is the table with the given information:
+
+JIRA URL	Status	Remarks
+TB-37961	Fixed	API throws error for the first time; second time it's successful. Could be a backend issue. Not related to Modularization.
+TB-37979	Unable to reproduce	Please attach video for reference.
+TB-37980	Unable to reproduce	Please attach video for the reference.
+TB-37996	Fixed	Fixed. Please check.
+TB-37997	Fixed	Fixed. Please check.
+TB-38128	Existing issue	This is an existing issue. Tested on the latest regression build.
+TB-38123	In Progress	Not able to reproduce till now due to DAO drop-off. Will try to reproduce and verify.
+
+
+JIRA URL                                                                 | Status          | Remarks
+----------------------------------------------------------------------------|-----------------|---------------------------------------------------------------------------
+https://jira.emiratesnbd.com/browse/TB-37961 | Fixed           | API throws error for the first time; second time it's successful. Could be a backend issue. Not related to Modularization.
+https://jira.emiratesnbd.com/browse/TB-37979 | Unable to reproduce | Please attach video for reference.
+https://jira.emiratesnbd.com/browse/TB-37980 | Unable to reproduce | Please attach video for the reference.
+https://jira.emiratesnbd.com/browse/TB-37996 | Fixed           | Fixed. Please check.
+https://jira.emiratesnbd.com/browse/TB-37997 | Fixed           | Fixed. Please check.
+https://jira.emiratesnbd.com/browse/TB-38128 | Existing issue  | This is an existing issue. Tested on the latest regression build.
+https://jira.emiratesnbd.com/browse/TB-38123 | In Progress     | Not able to reproduce till now due to DAO drop-off. Will try to reproduce and verify.
+
+
