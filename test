@@ -393,3 +393,50 @@ fun mapCountriesListToItem(
         }
     } ?: countriesList
 }
+
+
+
+For Microsoft Teams, a markdown-style table should work well. Here’s the table formatted for easy copying:
+
+| **JIRA Issue** | **Status**          | **Remarks**                                                                 |
+|----------------|---------------------|------------------------------------------------------------------------------|
+| [TB-37961](https://jira.emiratesnbd.com/browse/TB-37961) | Fixed | API throws error for the first time, successful the second time. Could be a backend issue, not related to Modularization. |
+| [TB-37979](https://jira.emiratesnbd.com/browse/TB-37979) | Unable to reproduce | Please attach video for reference.                                           |
+| [TB-37980](https://jira.emiratesnbd.com/browse/TB-37980) | Unable to reproduce | Please attach video for reference.                                           |
+| [TB-37996](https://jira.emiratesnbd.com/browse/TB-37996) | Fixed | Fixed, please check.                                                         |
+| [TB-37997](https://jira.emiratesnbd.com/browse/TB-37997) | Fixed | Fixed, please check.                                                         |
+| [TB-38128](https://jira.emiratesnbd.com/browse/TB-38128) | Existing issue | This is an existing issue. Tested on the latest regression build.            |
+| [TB-38123](https://jira.emiratesnbd.com/browse/TB-38123) | In Progress | Not able to reproduce yet due to DAO drop off. Will try to reproduce and verify. |
+
+This format should be easy to copy directly into Microsoft Teams and maintain the table structure.
+
+If the table formatting is not preserving well in Microsoft Teams, using a more basic format may work better. Here’s a version that uses simple lines and spacing, which should copy correctly into Teams:
+
+---
+
+**JIRA Issues Update:**
+
+- **TB-37961**: Fixed  
+  *Remarks:* API throws error for the first time, successful the second time. Could be a backend issue, not related to Modularization.
+
+- **TB-37979**: Unable to reproduce  
+  *Remarks:* Please attach video for reference.
+
+- **TB-37980**: Unable to reproduce  
+  *Remarks:* Please attach video for reference.
+
+- **TB-37996**: Fixed  
+  *Remarks:* Fixed, please check.
+
+- **TB-37997**: Fixed  
+  *Remarks:* Fixed, please check.
+
+- **TB-38128**: Existing issue  
+  *Remarks:* This is an existing issue. Tested on the latest regression build.
+
+- **TB-38123**: In Progress  
+  *Remarks:* Not able to reproduce yet due to DAO drop off. Will try to reproduce and verify.
+
+---
+
+This should retain the structure when pasted into Teams.
