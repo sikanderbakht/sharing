@@ -1,3 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.emiratesnbd.mobile.ui.home.fragment.accounts.opening.OpenNewAccountViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbarOpenNewAccount"
+            layout="@layout/custom_v2_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:item="@{viewModel.customV2ToolbarItem}" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarOpenNewAccount">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewHeaderChooseAccount"
+                    style="@style/FontSize5Light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacingXxLarge"
+                    android:layout_marginTop="@dimen/spacingXxxLarge"
+                    android:layout_marginEnd="@dimen/spacingXxLarge"
+                    android:text="@{viewModel.headerText}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Choose from our wide range of Accounts" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewNewAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacingMedium"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewHeaderChooseAccount"
+                    tools:itemCount="2"
+                    android:paddingBottom="@dimen/spacingXxxLarge"
+                    tools:listitem="@layout/layout_new_account_item"
+                    tools:visibility="visible" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+class OpenNewAccountFragment :
+    BaseFragment<FragmentOpenNewAccountBinding, OpenNewAccountViewModel>(),
+    ItemClickListener {
+
+    override val bindingVariable = BR.viewModel
+
+    override val viewModel = OpenNewAccountViewModel::class.java
+
+    private val accountOpeningSharedViewModel: AccountOpeningSharedViewModel by navGraphViewModels(
+        R.id.account_opening_navigation
+    ) { viewModelFactory }
+
+    private val termsAndConditionsSharedViewModel: TermsAndConditionsSharedViewModel by navGraphViewModels(
+        R.id.account_opening_navigation
+    ) { viewModelFactory }
+
+    private lateinit var newAccountTypeAdapter: NewAccountTypeAdapter
+
+    @Inject
+    lateinit var userManager: UserManager
+
+    private val safeArgs: OpenNewAccountFragmentArgs by navArgs()
+    private lateinit var openNewAccountSharedViewModel: OpenNewAccountSharedViewModel
+    override fun getLayoutId() = R.layout.fragment_open_new_account
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as DaggerAppCompatActivity).apply {
+            openNewAccountSharedViewModel =
+                initViewModel(OpenNewAccountSharedViewModel::class.java, factory = viewModelFactory)
+        }
+        accountOpeningSharedViewModel.cddUpdateDone = false
+    }
+
+    override fun initUserInterface(rootView: View) {
+        initToolbar()
+        initRecyclerView()
+        injectedViewModel.setPageTexts()
+        initObservers()
+    }
+
+    private fun initToolbar() {
+        injectedViewModel.apply {
+            setupCustomV2Toolbar(
+                getCmsString(CmsKeyMapper.ACCOUNTOPENINGOPENNEWACCOUNT),
+                leftButtonDrawable = RUiComponent.drawable.ic_v2_back_button
+            )
+            onToolbarLeftButtonClickEvent.observe(viewLifecycleOwner) {
+                if (popBackOrGoToHome().not()) activity?.goBackToHome()
+            }
+        }
+    }
+
+    private fun initRecyclerView() {
+        newAccountTypeAdapter = NewAccountTypeAdapter(clickListener = this)
+        viewDataBinding.recyclerViewNewAccount.apply {
+            setup()
+            adapter = newAccountTypeAdapter
+            setHasFixedSize(true)
+        }
+
+        if (safeArgs.accountTypeListData == null) {
+            openNewAccountSharedViewModel.accountTypeList.accountTypes.let {
+                newAccountTypeAdapter.setItems(it.toArrayList().apply {
+                    removeIf{item -> item.productList.isNullOrEmpty()
+                            // Joint Account will be added even if it has no products
+                            && item.accountType != AccountTypeStringDef.JOINT }
+                })
+            }
+        } else {
+            safeArgs.accountTypeListData?.accountTypes?.let {
+                newAccountTypeAdapter.setItems(it.toArrayList().apply {
+                    removeIf{item -> item.productList.isNullOrEmpty()}
+                })
+            }
+        }
+    }
+
+    override fun onItemClick(position: Int, view: View) {
+        newAccountTypeAdapter.getItems()[position].let {
+            if (it.accountType == AccountTypeStringDef.JOINT) {
+
+                injectedViewModel.checkJointAccountEligibility()
+
+            } else if (BuildConfig.FLAVOR_app == AppConstants.Flavors.LIV && it.accountType.equalsIgnoreCase(
+                    AccountTypeStringDef.GAME_ON_DEPOSIT
+                )
+            ) {
+                (findNavController().graph.findNode(R.id.account_opening_navigation) as? NavGraph)?.let { navGraph ->
+                    navGraph.setStartDestination(
+                        R.id.label_game_deposit_campaign_page
+                    )
+                    findNavController().safeNavigate(
+                        R.id.global_action_account_opening, NewAccountTypeFragmentArgs(
+                            accountOpenTypeListData = AccountOpenTypeListData(
+                                if (safeArgs.accountTypeListData?.eligibleCards == null) {
+                                    openNewAccountSharedViewModel.accountTypeList.eligibleCards
+                                } else {
+                                    safeArgs.accountTypeListData?.eligibleCards
+                                }, newAccountTypeAdapter.getItems()[position]
+                            ),
+                            flowType = NEW_ACCOUNT_OPENING_ACCOUNT_TYPE,
+                            selectedAccount = ApplyNowResponse.ApplyNowIDs.DEPOSIT_CAMPAIGN,
+                        ).toBundle()
+                    )
+                }
+            } else if (it.accountType == AccountTypeStringDef.JOINT) {
+                injectedViewModel.checkJointAccountEligibility()
+            }  else if (BuildConfig.FLAVOR_app == AppConstants.Flavors.LIV && it.accountType.equalsIgnoreCase(
+                    AccountTypeStringDef.LITE
+                )
+            ) {
+                //me.commonx.android.utils.InsiderUtils.setLiteServiceEntryPointAttributes(true)
+                val bundle = Bundle()
+                bundle.putString(
+                    CommonModuleConstants.BundleConstants.USER_LOCATION, String.empty
+                )
+                bundle.putString(
+                    CommonModuleConstants.BundleConstants.NATIONALITY,
+                    userManager.userItem.value?.nationalityCode.safeGet()
+                )
+                val args = ModularArgsModel(
+                    navLayout = me.featuresx.android.R.navigation.lite_onboarding_navigation,
+                    navDestination = me.featuresx.android.R.id.liteOnboardingParentFragment,
+                    navBundle = bundle,
+                    setDefaultGraph = false
+                )
+                findNavController().navigate(
+                    OpenNewAccountFragmentDirections.actionToLiteOnboadingParent(
+                        data = args
+                    )
+                )
+            }  else if (!it.accountType.equalsIgnoreCase(AccountTypeStringDef.LITE)) {
+                accountOpeningSharedViewModel.selectedAccountType = it
+
+                accountOpeningSharedViewModel.eligibleCards =
+                    if (safeArgs.accountTypeListData?.eligibleCards == null) {
+                        openNewAccountSharedViewModel.accountTypeList.eligibleCards
+                    } else {
+                        safeArgs.accountTypeListData?.eligibleCards
+                    }
+                accountOpeningSharedViewModel.eligibleCardsListForAccounts =
+                    accountOpeningSharedViewModel.eligibleCards
+                findNavController().safeNavigate(
+                    OpenNewAccountFragmentDirections.actionNewAccountType(
+                        flowType = NEW_ACCOUNT_OPENING_ACCOUNT_TYPE
+                    )
+                )
+            }
+            else {
+
+            }
+        }
+    }
+
+    private fun initObservers() {
+        injectedViewModel.onCheckJointAccountEligibility.observe(viewLifecycleOwner) {
+            when (it) {
+                is SuffixJointAccountUIState.ApiFailureError -> {
+                    toggleLoadingDialog(false)
+                    it.message.showErrorDialog()
+                }
+
+                is SuffixJointAccountUIState.Loading -> {
+                    toggleLoadingDialog(true)
+                }
+
+                is SuffixJointAccountUIState.Success<*> -> {
+                    toggleLoadingDialog(false)
+                    // in Liv we navigate to T&C first then start Joint Account flow
+                    termsAndConditionsSharedViewModel.setNavDirectionsAfterAcceptSuccess(
+                        OpenNewAccountFragmentDirections.globalActionSuffixJointAccountNavigation()
+                    )
+                    findNavController().safeNavigate(getTncNavDirection())
+                }
+            }
+        }
+    }
+
+    private fun getTncNavDirection(): NavDirections {
+        return OpenNewAccountFragmentDirections.actionNativeTermsAndConditions(
+            termsAndConditionUrl = "${TermsAndConditionUrlEnums.JOINT_ACCOUNT.value}${cmsManager.appLanguage}",
+            toolBarTitle = getCmsString(CmsKeyMapper.TERMSANDCONDITIONS),
+            isMandateToAccept = true,
+            userJourneyType = UserJourneyType.JOINT_ACCOUNT_SERVICES,
+            infoTextVisibility = true,
+            accountType = AccountTypeStringDef.JOINT
+        )
+    }
+}
+
+
+
 fun uploadKycDocument(fileName: String, userLocationCode: String) {
         val decodedBitmap = BitmapFactory.decodeFile(filePath)
         val compressedFile = createImageFile(fileName)
