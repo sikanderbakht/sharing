@@ -1,3 +1,51 @@
+it('should navigate to DAO Instruction screen when navigateToDaoInstruction is called', async () => {
+        const daoButton = await driver.$('~navigateToDaoButton'); // Assuming you have a button or element to trigger this navigation
+        await daoButton.click();
+
+        const daoScreen = await driver.$('~daoInstructionScreen');
+        await daoScreen.waitForDisplayed({ timeout: 5000 });
+
+        expect(await daoScreen.isDisplayed()).toBe(true);
+    });
+
+    it('should show resume dialog when revisitFlag is set and passSet is true', async () => {
+        // Simulate revisitFlag being set
+        const revisitFlagButton = await driver.$('~simulateRevisitFlagTrue'); // Assuming a button to simulate this
+        await revisitFlagButton.click();
+
+        const resumeDialog = await driver.$('~resumeDialog');
+        await resumeDialog.waitForDisplayed({ timeout: 5000 });
+
+        expect(await resumeDialog.isDisplayed()).toBe(true);
+
+        const positiveButton = await driver.$('~positiveButton');
+        await positiveButton.click();
+
+        const applicationStagesScreen = await driver.$('~applicationStagesScreen');
+        await applicationStagesScreen.waitForDisplayed({ timeout: 5000 });
+
+        expect(await applicationStagesScreen.isDisplayed()).toBe(true);
+    });
+
+    it('should show dialog and create new DAO application when passSet is false and user selects "Create New Application"', async () => {
+        // Simulate revisitFlag being set
+        const revisitFlagButton = await driver.$('~simulateRevisitFlagFalse'); // Assuming a button to simulate this
+        await revisitFlagButton.click();
+
+        const createNewAppDialog = await driver.$('~createNewAppDialog');
+        await createNewAppDialog.waitForDisplayed({ timeout: 5000 });
+
+        const negativeButton = await driver.$('~negativeButton');
+        await negativeButton.click();
+
+        const loadingIndicator = await driver.$('~loadingIndicator');
+        await loadingIndicator.waitForDisplayed({ timeout: 5000 });
+
+        expect(await loadingIndicator.isDisplayed()).toBe(true);
+    });
+
+
+
 private fun navigateToDaoInstruction() {
         findNavController().safeNavigate(
             LoginHomeFragmentDirections.actionDao()
