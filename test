@@ -1,3 +1,9 @@
+private fun navigateToDaoInstruction() {
+        findNavController().safeNavigate(
+            LoginHomeFragmentDirections.actionDao()
+        )
+    }
+
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
