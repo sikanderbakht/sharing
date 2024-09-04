@@ -4,6 +4,61 @@ private fun navigateToDaoInstruction() {
         )
     }
 
+revisitFlag.observe(viewLifecycleOwner, EventObserver { isDedupe ->
+                sendDaoFcmToken()
+                if (isDedupe.revisitFlag) {
+                    showResumeDialog(isDedupe.isPassSet)
+                } else {
+                    findNavController().safeNavigate(
+                        LoginHomeFragmentDirections.actionDao()
+                    )
+                }
+            })
+
+private fun showResumeDialog(passSet: Boolean) {
+        if (passSet) {
+            DialogUtils.showInfoDialog(
+                context = requireContext(),
+                title = getCmsString(CmsKeyMapper.DAOAPPLICATIONSTARTED),
+                message = getCmsString(CmsKeyMapper.DAOAPPLICATIONMESSAGE),
+                buttonName = getCmsString(CmsKeyMapper.DAORESUMEAPPLICATION),
+                alertDialogListener = object : AlertDialogListener {
+                    override fun onPositive() {
+                        injectedViewModel.getApplicationStages()
+                    }
+                }
+            )
+        } else {
+            DialogUtils.twoButtonDialog(
+                context = requireContext(),
+                title = getCmsString(CmsKeyMapper.DAOAPPLICATIONSTARTED),
+                message = getCmsString(CmsKeyMapper.DAOAPPLICATIONMESSAGE),
+                negativeButtonText = getCmsString(CmsKeyMapper.DAOCREATENEWPPLICATION),
+                positiveButtonText = getCmsString(CmsKeyMapper.DAORESUMEAPPLICATION),
+                alertDialogListener = object : AlertDialogListener {
+                    override fun onNegative() {
+                        injectedViewModel.createNewDaoApplication()
+                    }
+
+                    override fun onPositive() {
+                        injectedViewModel.getApplicationStages()
+                    }
+                }
+            )
+        }
+    }
+
+fun createNewDaoApplication() {
+        showLoading.postValue(Event(true))
+        addDisposable(createNewDaoApplicationUseCase.execute(CreateNewDaoApplicationSubscriber()))
+    }
+
+private fun navigateToDaoInstruction() {
+        findNavController().safeNavigate(
+            LoginHomeFragmentDirections.actionDao()
+        )
+    }
+
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
