@@ -1,0 +1,47 @@
+Test Case,Frontend,Backend,Will Help,Next Phase,Not Feasible,Description
+Scan original,Yes,,,,Yes,Manual Intervention Required
+Scan copy,Yes,,,,Yes,Manual Intervention Required
+Gallary upload,Yes,,,,,
+Savings account,Yes,,,,,
+Plus saver,Yes,,,,,
+Insta login,Yes,,,,,
+Kunooz,Yes,,,,,
+Selfie enabled,Yes,,,,Yes,Manual Intervention Required
+AECB poor,Yes,,,Yes,,"DB Intervention required, Frontend will cover it in next phase"
+AECB satisfactory,Yes,,,,,DB Intervention required
+AECB non satisfactory,Yes,,,,,
+OTP enabled,Yes,,,,,API integration is not covered in Frontend automation
+UAE National docs,Yes,,,Yes,,Will be covered in next phase
+Field Validations,Yes,,,Yes,,Will be covered in next phase
+Back buttons according to the stages,Yes,,Yes,Yes,,"Will be covered in next phase, Some part of it will be handled in this phase"
+Customer dedupe,Yes,,Yes,Yes,,Current implementation will help a lot in testing 
+Mobile dedupe,Yes,,Yes,Yes,,"As per FE, this will reduce effort with happy flow. But in this phase we are not handling this case specifically."
+Email dedupe,Yes,,Yes,Yes,,"As per FE, this will reduce effort with happy flow. But in this phase we are not handling this case specifically."
+Current account,Yes,,,,,
+Verify the CRS details updated in CCRSM section,Yes,,Yes,Yes,,"Will be covered in next phase, Some part of it will be handled in this phase"
+Verify the Fatca details updated in Bank custom details section in IERC - Bank custom details,Yes,,Yes,Yes,,"Will be covered in next phase, Some part of it will be handled in this phase"
+Verify the user is able to update fatca crs details from the FE,Yes,,,,,
+Joint account ,Yes,,,,,
+Non salaried - LIV,Yes,,,,,
+Non salaried - Self Employed,Yes,,,,,
+Non salaried - Housewife,Yes,,,,,
+Non salaried - Student,Yes,,,,,
+Non salaried - Unemployed,Yes,,,,,
+resume journey at different stages,Yes,,,,,
+hyperlinks verification,Yes,,,Yes,,Will be covered in next phase
+fsk approve,,Yes,,,,
+fsk reject,,Yes,,,,
+Email,,Yes,,,,
+SMSs,,Yes,,,,
+Lead creation,,Yes,,,,
+docs in maktaba portal,,Yes,,,,
+Welcome letter,,Yes,,,,
+Verify the signature updated in AO form and Sigcap,,Yes,,,,
+Audit trail pdf fatca logs,,Yes,,,,
+Verify the fatca is updated In Audit trail document in makthaba,,Yes,,,,
+Verify the fcdone=y flag in PDM for fatca completed user,,Yes,,,,
+Sourcing DB,,Yes,,,,
+Verify the limit is lifted for all the accounts    IIOA,,Yes,,,,
+QMS details in DB,,Yes,,,,
+FTS details in DB,,Yes,,,,
+Verify the Deliveryflag update in PDM when debit card is delivered to the user,,yes,,,,
