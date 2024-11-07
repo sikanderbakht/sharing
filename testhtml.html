@@ -1,0 +1,725 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta charset="utf-8">
+    <style>
+        u {
+            font-weight: bold !important;
+            text-decoration: underline;
+        }
+
+        .bold {
+            font-family: 'OpenSans-Bold' !important;
+        }
+
+        .arabic {
+            font-family: 'Tajawal';
+            direction: rtl;
+        }
+
+        @font-face {
+            font-family: 'Tajawal';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Tajawal'), local('Tajawal'), url('https://www.emiratesnbd.com/ar/includes/themes/ar-enbd/css/fonts-2019/tajawal-v3-arabic_latin-300.woff2') format('woff2');
+        }
+
+        .page-break {
+            break-before: page;
+        }
+    </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 25px;
+            font-size:14px;
+        }
+
+        th,
+        td {
+            border: 0.5px solid #000;
+            text-align: start;
+            color: #7030A0;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+    <!--bootstrap style-->
+    <style>
+
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            :root {
+                scroll-behavior: smooth;
+            }
+        }
+
+        html {
+            font-family: sans-serif;
+            line-height: 1.15;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+            *, *::before, *::after {
+                box-sizing: border-box;
+            }
+
+        .container {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .row {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .col-1 {
+            -ms-flex: 0 0 8.33%;
+            flex: 0 0 8.33%;
+            max-width: 8.33%;
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .col-2 {
+            -ms-flex: 0 0 16.66%;
+            flex: 0 0 16.66%;
+            max-width: 16.66%;
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .col-3 {
+            -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+            max-width: 25%;
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .col-4 {
+            -ms-flex: 0 0 33.333333%;
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+        }
+
+        .col-5 {
+            flex: 0 0 41.666667%;
+            max-width: 41.666667%;
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .col-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+            position: relative;
+            width: 100%;
+        }
+
+        .col-7 {
+            -ms-flex: 0 0 58.333333%;
+            flex: 0 0 58.333333%;
+            max-width: 58.333333%;
+        }
+
+        .col-8 {
+            -ms-flex: 0 0 66.666667%;
+            flex: 0 0 66.666667%;
+            max-width: 66.666667%;
+        }
+
+        .col-9 {
+            -ms-flex: 0 0 75%;
+            flex: 0 0 75%;
+            max-width: 75%;
+        }
+
+        .col-10 {
+            -ms-flex: 0 0 83.333333%;
+            flex: 0 0 83.333333%;
+            max-width: 83.333333%;
+        }
+
+        .col-11 {
+            -ms-flex: 0 0 91.666667%;
+            flex: 0 0 91.666667%;
+            max-width: 91.666667%;
+        }
+
+        .col-12 {
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .table-section table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table tr {
+            page-break-inside: auto;
+            /*            page-break-inside: auto;
+        */
+        }
+
+        .table-section table thead tr th {
+            text-align: left;
+            color: #461e57;
+            border: 1px solid #D1D3D4;
+            padding: 4px;
+        }
+
+        .table-section table tbody tr td,
+        .table-section table tbody tr th {
+            text-align: left;
+            color: #461e57;
+            border: 1px solid #D1D3D4;
+            padding: 4px;
+            vertical-align: baseline;
+        }
+
+        .table-section table tbody tr.blue-value td {
+            color: #461e57;
+            background-color: #D1D3D4;
+            text-align: center;
+            border: 1px solid #fff;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+
+        .mb-1, .my-1 {
+            margin-bottom: .25rem !important;
+        }
+
+        .mt-1, .my-1 {
+            margin-top: .25rem !important;
+        }
+
+        .mb-2, .my-2 {
+            margin-bottom: .5rem !important;
+        }
+
+        .mt-2, .my-2 {
+            margin-top: .5rem !important;
+        }
+
+        .mt-5, .my-5 {
+            margin-top: 1rem !important;
+        }
+
+        .mb-5, .my-5 {
+            margin-bottom: 1rem !important;
+        }
+
+        table tr td ul li {
+            padding-bottom: 2px;
+        }
+
+        .table-2 th,
+        .table-2 td {
+            text-align: center !important;
+        }
+
+        .no-border-bottom tr td {
+            border-bottom: 0 !important;
+            border-top: 0 !important;
+        }
+
+        .three-col-table th,
+        .three-col-table td {
+            width: 33%;
+        }
+
+        .four-col-table th,
+        .four-col-table td {
+            width: 25%;
+        }
+
+        .six-col-table th,
+        .six-col-table td {
+            width: 16%;
+        }
+
+        .seven-col-table th,
+        .seven-col-table td {
+            width: 14.29%;
+        }
+
+        .two-col-table td {
+            width: 50%;
+        }
+
+        .three-col-table .arabic {
+            text-align: right;
+        }
+
+        .three-col-table td {
+            text-align: center !important;
+        }
+
+        .no-border td {
+            border: 0 !important;
+        }
+
+        .t-and-c {
+            margin: 0;
+        }
+
+        .smallScreeen {
+            display: none;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .bigScreeen {
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        @media (max-width: 1190px) {
+            .smallScreeen {
+                display: flex;
+            }
+
+            .bigScreeen {
+                display: none;
+            }
+
+            .content {
+                padding: 0 27px 0 27px;
+            }
+        }
+
+        p {
+            margin: 1px;
+        }
+    </style>
+
+</head>
+<body>
+    <br>
+    <br>
+
+    <div class="row">
+        <table border="0" align="center" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+                <td width="100%">
+                    <strong>
+                        Important Information
+                    </strong>
+                </td>
+                <!--<td width='25'>&nbsp;</td>-->
+            </tr>
+            <tr>
+                <td width="100%">
+                    It is important that you know who the Bank is and how to contact it. We are Emirates Islamic Bank (P.J.S.C.) (the “Bank”) an Islamic bank regulated and licensed by the Central Bank of the United Arab Emirates. You may serve notices on the Bank or notify it of a complaint at its postal address, PO Box xxx, Dubai, UAE or by email to
+                    <a href=" customercareunit@emiratesislamic.ae"> customercareunit@emiratesislamic.ae</a>
+                    or calling +971 600 54 0000
+                </td>
+            </tr>
+            <tr>
+                <td width="100%">
+                    The account(s) requested will be made available at the discretion of the Bank. Ifthe Bank does not approve this application it will notify you in accordance with applicable law.
+                </td>
+            </tr>
+            <tr>
+                <td width="100%">
+                    The account(s) and related services by the Bank are subject to the terms of this application together with the Bank’s General Terms and Conditions for Consumer Banking Services (as may be amended from time to time, the <strong>“General Terms”</strong>).
+                </td>
+            </tr>
+            <tr>
+                <td width="100%">
+                    You are entitled to cancel the application to open the account(s) within five (5) Business Days of signing this document (“<strong>Cooling-off Period</strong>”) and the Bank cannot process the application until this period expires and you may need to resubmit this document. You should take time to consider the application, but you do have the right to waive the Cooling-off Period by ticking the box below.
+                </td>
+            </tr>
+            <tr>
+                <td width="100%">
+                    <strong>
+                        Warning: The Bank recommends that you carefully read this application, Key Facts Statement and the Bank’s General Terms before submitting this application and contact the Bank should you have any questions.
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td width="100%">
+                    I agree to waive my right to a “cooling off” period of 5 business days, so that my account can be immediately processed and understand that by waiving the cooling-off period the terms and conditions which apply to the accounts will be immediately binding on me/us.
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+    <p class="page-break">
+        <br>
+        <br>
+    </p>
+
+    <div class="row">
+        <table border="1" align="center" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+                <td width="100%">
+                    I acknowledge receiving the Key Facts Statement (KFS), and have also read and understood the KFS at the time of signing the application/offer document.
+                    <a href="https://www.emiratesislamic.ae/-/media/ei/pdfs/key-information/kfs_deposits_ea.pdf">https://www.emiratesislamic.ae/-/media/ei/pdfs/key-information/kfs_deposits_ea.pdf</a>
+                </td>
+
+            </tr>
+            <tr>
+                <td width="100%">
+                    I acknowledge that the rate, fees and costs are subject to change which I/We will check within the Schedule of Charges and Key Facts Statement on a regular basis.
+                </td>
+            </tr>
+            <tr>
+                <td width="100%">
+                    I have read, understood, acknowledge and accept the Bank’s General Terms available on its website
+                    (<a href="https://www.emiratesislamic.ae/-/media/ei/pdfs/terms-and-condition/ei_general_terms_and_conditions.pdf">General Terms</a>) ,
+                    (<a href="https://www.emiratesislamic.ae/-/media/ei/pdfs/terms-and-condition/accounts_terms_and_conditions.pdf">Special Terms</a>)               
+                    as amended from time to time, which I/We expressly agree and accept to abide by, whether in Arabic or English language.
+                </td>
+            </tr>
+            <tr>
+                <td width="100%">
+                    <strong>
+                        Declaration
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td width="100%">
+                    By signing and submitting this application, I/We apply to the Bank to open the account(s) set out in this application. In doing so I/We:
+
+                    <ul type="1">
+                        <li>confirm that all the information furnished by me/us in this application is true, complete and accurate in all respects and that I/We have not willfully withheld any material fact and will immediately inform the Bank if there are any material changes to this information.</li>
+
+                        <li>hereby confirm that I/we will not use the accounts for business activities.</li>
+
+                        <li>agree that the Bank may communicate and contract with me/us electronically through any means as the Bank may make available, all of which shall be binding on me/us.</li>
+
+                        <li>acknowledge that the Bank has the right to amend the terms and conditions which apply to the accounts and the Bank’s General Terms by notice in writing in accordance with applicable law, which I/We agree and accept to abide by, whether in Arabic or English language.</li>
+                    </ul>
+
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+    <p class="page-break">
+        <br>
+        <br>
+    </p>
+
+    <div class="row">
+        <table border="1" align="center" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+                <td width="100%" style="padding-bottom:95px">
+                    <ul type="1">
+                        <li>acknowledge that the information contained in this form and/ information regarding the Account Holder and any Reportable Account(s) may be provided to the tax authorities of the country in which this account(s) is/are maintained and exchanged with tax authorities of another country or countries in which the Account Holder may be tax resident pursuant to intergovernmental agreements to exchange financial account information.</li>
+
+                        <li>certify that I am the Account Holder (or am authorized to sign for the Account Holder) of all the account(s) to which this form applies.</li>
+
+                        <li>confirm that under no circumstances shall the bank, its employees or its contractors be liable for any direct, indirect, incidental, special, punitive or consequential damages that may result in any way from their reliance on the information.</li>
+
+                        <li>confirm that I have provided this FATCA/CRS self-certification willingly, without advice or help from Bank.</li>
+
+                        <li>Understand that providing false or misleading information with regards to individual tax status or tax residency is a violation of UAE Cabinet Resolution and has a penalty. Please refer to https://mof.gov.ae/ for more details.</li>
+
+                        <li>
+                            Understand and agree to refer to
+                            <a href="https://www.oecd.org/tax/automatic-exchange/crs-implementation-and-assistance/tax-identification-numbers/">
+                                https://www.oecd.org/tax/automatic-exchange/crs-implementation-and-assistance/tax-identification-numbers/
+                            </a>
+                        </li>
+
+                        <li>TIN structure/format for your respective tax resident country/ies.</li>
+
+                        <li>Understand and agree that the Bank does not provide any tax advice.</li>
+
+                        <li>may choose not to agree to biometric verification, however the Bank may be unable to provide the relevant product or service.</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+    <p class="page-break">
+        <br>
+        <br>
+    </p>
+
+    <div class="row">
+        <table border="1" align="center" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+                <td width="100%">
+                    <ul type="1">
+                        <li style="padding-top:30px">
+                            I/We  authorise  the  Bank to obtain and disclose at any time any financial, legal or credit information relating to me/us, including any information pertaining to the address, telephones or utility bills relating to me/us. to verify, obtain or disclose such information as the Bank may deem fit in its absolute discretion. I/We agree that the Bank may obtain, request, transfer and disclose any information relating to me/us (including information the Bank may obtain from any third parties such as any local or international credit bureau), to and between the branches, parent company, subsidiaries, affiliates, representative offices, agents of the Bank and any third parties selected by any of them or the Bank, wherever situated, for private use (including for use in connection with providing of any facilities, products or services to me and for data processing, statistical and risk analysis purposes, global cash services, and dealings in securities on any exchange securities markets and any other relevant authorities and agencies pertaining thereto inside or outside UAE).
+                        </li>
+
+                        <li>Without prejudice to the foregoing, I/we hereby authorise the Bank, without the need to get any oral permits, to obtain or disclose any of the information referred to in this declaration to/from any governmental or semi-governmental authorities, body, organization, company, credit bureau, or any service Provider such as electricity, water and telecommunications companies, whether inside the UAE or abroad, which maintain or are supposed to maintain any such information relating to me/us. The Bank may communicate with such bodies to obtain or disclose any of information referred to in this declaration.</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+    <p class="page-break">
+        <br>
+        <br>
+    </p>
+
+    <div class="row">
+        <table border="1" align="center" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+                <td width="100%" style="padding-top:25px">
+                    <ul type="1">
+
+                        <li>The Bank shall be entitled to use any or all of the information at any time  for the purpose of granting/or commencing to grant me any facilities or any other banking services offered by the Bank or to use this information for the purpose of assessing my credit position and collect any amounts or facilities payable to the Bank. The provisions of this declaration, shall remain in force and effect against me/us, and may not be terminated, or amended without the Bank’s prior written consent. The Bank and any of its branches, parent company, subsidiaries, affiliates, representative offices, agents, or any third parties selected by any of them or the Bank, shall be entitled to obtain, transfer and disclose any credit, legal or financial or any other information relating to me/us whether now or in future, or relating to any existing relationship with the Bank or after its termination, or even if my application for any banking service or finance is rejected by the Bank and/or whether such information is obtained by the Bank in the past or now or in future.</li>
+
+                        <li>The Bank shall hereby be entitled at any time and without notifying me/us or obtaining my/our approval to withdraw and debit or give instructions to debit/transfer any credit balance (or any part thereof) available at any time and in any currency in any of my/our accounts opened under my/our name or jointly with any other person with the Bank or with any of Emirates NBD Bank PJSC branches or any of the Bank’s subsidiary companies in order to settle any of my/our financial liabilities towards the Bank (or any part thereof).</li>
+
+                        <li>I/We hereby authorize authorises the Bank to transfer balances less than AED 100 held in inactive accounts to the Bank's charity account / charity entities/channels as it may seem fit . </li>
+
+                    </ul>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+    <p class="page-break">
+        <br>
+        <br>
+    </p>
+
+    <div class="row">
+        <table border="1" align="center" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+                <td width="100%">
+
+                    <p style="color:goldenrod">
+                        Personal Data and Your Consent
+                    </p>
+                    <p>
+                        <strong>
+                            Processing of your Data
+                        </strong>
+                    </p>
+
+                    <br>
+
+                    Your personal data will only ever be collected by the Bank for a lawful purpose directly related to product or service that you have consented to.
+                    It is important that you understand the manner in which the Bank will collect, store, share and use your personal data and also your rights in relation to the same. This is set out in the Banks General Terms and its Data Privacy Notice available on its website
+                    (<a href="https://www.emiratesislamic.ae/en/data-privacy-notice">Data Privacy Notice</a>).
+
+                    <br>
+
+                    By signing this letter, I/we provide Emirates Islamic Bank PJSC ('the <strong>Bank</strong>') with explicit consent for the following:
+
+                    <ul>
+                        <li>
+                            to the collection, storage, use and transfer (in electronic or other form) of my/our personal data by the Bank, the Bank’s group, affiliates (inside or outside of the UAE) and third parties for the following purposes including but not limited to:
+                            <ol type="i">
+                                <li>
+                                    implementing, administering, and managing my/our relationship with the Bank and making available the account(s) and any other products and/or services the Bank may provide or offer to me/us. This includes an authorisation for the Bank and its affiliates to contact me/us (or any third party whose details I/we have shared with the Bank) in relation to these products and/or services; and
+                                </li>
+                                <li>
+                                    Know Your Customer (KYC) processes for establishing and verifying my/our identity either offline or electronically as may be permitted and thereafter maintaining such records, under applicable law and regulations, for all accounts, facilities, services, and relationships through the Bank and the Bank’s wider group;
+                                </li>
+                            </ol>
+                        </li>
+                        <!--<li>
+                            to the Bank obtaining, from time to time, my/our credit report from the Al Etihad Credit Bureau and any other source of information for the purposes of assessing my/our creditworthiness and determining my/our eligibility for any products, banking services or credit facilities offered by the Bank, including but not limited to any renewals, amendments, restructurings, extensions, or enhancements thereto.
+                        </li>-->
+                    </ul>
+                </td>
+            </tr>
+
+        </tbody></table>
+    </div>
+
+    <p class="page-break">
+        <br>
+        <br>
+    </p>
+
+    <div class="row">
+        <table border="1" align="center" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+                <td width="100%" style="padding-top:10px">
+                    <ul>
+                        <li>
+                            to the Bank obtaining, from time to time, my/our credit report from the Al Etihad Credit Bureau and any other source of information for the purposes of assessing my/our creditworthiness and determining my/our eligibility for any products, banking services or credit facilities offered by the Bank, including but not limited to any renewals, amendments, restructurings, extensions, or enhancements thereto.
+                        </li>
+                        <li>
+                            I/We also authorise the Bank to provide such information as may be required under applicable law and regulations to obtain any such credit report. I/We agree and acknowledge that this undertaking shall remain in force and effect and may not be terminated or amended without the Bank’s prior written consent.
+                        </li>
+                        <li>
+                            to my/our personal data being processed by the Bank internally, with third parties within the UAE or as part of an outsourcing agreement with a third party, which may require my/our personal data to be transferred overseas.
+                        </li>
+                    </ul>
+                    <p>
+                        I/We further acknowledge that, as part of any overseas outsourcing arrangement, my/our data may or may not be accessed in legal proceedings outside of the UAE;
+                    </p>
+                    <ul>
+                        <li>
+                            to my/our personal data being stored on any cloud-based data centre which the Bank uses (whether hosted by the Bank or a third-party provider);
+                        </li>
+                        <li>
+                            in circumstances where I/we have any facility or credit card from the Bank and in the event of default of such facility or credit card, to the Bank and its authorised agents (inside or outside the UAE) following up on the collection of any amounts due to the Bank from me/us and take actions permitted under law including, but not limited to, contacting me/us or any third party (including relatives, friends or employers) whose details I/we have shared with the Bank, visiting my/our place of work or visiting my residence in the UAE or abroad;
+                        </li>
+                        <!--<li>
+                            subject to Applicable Law, to the Bank and third parties sending marketing information (e.g., newsletters, product information, event invitations, promotions, offers and/or rewards) to me/us concerning products and services of interest to me/us, and that our personal data may be used by the Bank to present tailored offers to me/us and to provide me/us with the best possible services;
+                        </li>
+                        <li>
+                            To my/our personal data being processed by the Bank internally and externally, using advanced analytics processes to prepare statistical, market-analysis and product-analysis to develop, build and improve the Bank’s products and services to you.
+                        </li>-->
+                    </ul>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+    <p class="page-break">
+        <br>
+        <br>
+    </p>
+
+    <div class="row">
+        <table border="1" align="center" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+                <td width="100%">
+                    <ul>
+                        <li>
+                            subject to Applicable Law, to the Bank and third parties sending marketing information (e.g., newsletters, product information, event invitations, promotions, offers and/or rewards) to me/us concerning products and services of interest to me/us, and that our personal data may be used by the Bank to present tailored offers to me/us and to provide me/us with the best possible services;
+                        </li>
+                        <li>
+                            To my/our personal data being processed by the Bank internally and externally, using advanced analytics processes to prepare statistical, market-analysis and product-analysis to develop, build and improve the Bank’s products and services to you.
+                        </li>
+                        <li>
+                            I/We understand my/our data will be processed in line with the Bank’s Data Privacy Notice available on this website (<a href="https://www.emiratesislamic.ae/en/data-privacy-notice">Data Privacy Notice</a>).
+                        </li>
+                        <li>
+                            To my/our personal data being processed by the Bank internally and externally using advanced analytics process to prepare statistical, market-analysis  and product-analysis to develop, build and improve the Bank’s products and services to you.
+                            <p>
+                                <strong>
+                                    Your rights
+                                </strong>
+                                <br>
+                                Withdrawal of your consent: You may withdraw your consent at any time, however the Bank may be unable to continue to provide the relevant product or service.
+                                <br>
+                                Correction or complaint: You have the right to access and request the correction of your personal data or to make a complaint at
+                                <a href="mailto:Customercareunit@emiratesislamic.ae">Customercareunit@emiratesislamic.ae</a>
+                            </p>
+                        </li>
+                    </ul>
+                    <!--<p>
+                        <strong>
+                            Governing Law and Jurisdiction
+                        </strong>
+                        <br />
+
+                        This application and the account(s) including any non-contractual obligations arising out of or in connection with it, will be governed by the laws of the UAE. The Bank and you agree to the exclusive jurisdiction of the courts of the Applicable Emirate to settle any dispute arising out of or in connection with the account(s) provided that the Bank may bring proceedings in any other jurisdiction (inside or outside the UAE) if it deems appropriate in accordance with the General Terms.
+                    </p>
+
+                    <br />
+
+                    <p>
+                        <strong>
+                            Collection of Specimen Signature:
+                        </strong>
+                        <br />
+                        As part of the Bank providing services to you, you hereby agree , acknowledge and confirm your full agreement and compliance with all relevant laws governing electronic / digital transactions; also that the Bank is required to collect a specimen of your physical signature. For this purpose, the Bank will use the signature you provide at the end of this application (your “<strong>Specimen Signature</strong>”).
+                    </p>-->
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+    <p class="page-break">
+        <br>
+        <br>
+    </p>
+
+    <div class="row">
+        <table border="1" align="center" cellpadding="5" cellspacing="0">
+            <tbody><tr>
+                <td width="100%" style="padding-top:10px">
+                    <p>
+                        <strong>
+                            Governing Law and Jurisdiction
+                        </strong>
+                        <br>
+
+                        This application and the account(s) including any non-contractual obligations arising out of or in connection with it, will be governed by the laws of the UAE. The Bank and you agree to the exclusive jurisdiction of the courts of the Applicable Emirate to settle any dispute arising out of or in connection with the account(s) provided that the Bank may bring proceedings in any other jurisdiction (inside or outside the UAE) if it deems appropriate in accordance with the General Terms.
+                    </p>
+
+                    <br>
+
+                    <p>
+                        <strong>
+                            Collection of Specimen Signature:
+                        </strong>
+                        <br>
+                        As part of the Bank providing services to you, you hereby agree , acknowledge and confirm your full agreement and compliance with all relevant laws governing electronic / digital transactions; also that the Bank is required to collect a specimen of your physical signature. For this purpose, the Bank will use the signature you provide at the end of this application (your “<strong>Specimen Signature</strong>”).
+                    </p>
+                    <p>
+                        You also agree that the Specimen Signature is a specimen of your original signature and will be used as your Specimen Signature for all transactions relating to the Account by the Bank. You also agree that your Specimen (digital/electronic signature) &amp; your digital/electronic acceptance (as applicable ) is in lieu of your physical signature, is legally binding – holding complete legal validity and enforceability – and has the full legal effect equivalent to that of your physical signature(s).
+                    </p>
+                    <br>
+                    <p>
+                        Your acknowledgment and obligation to comply with all applicable General Terms and authorizing Emirates Islamic Bank PJSC to act as per your digital/electronic Specimen Signature/acceptance/instructions.
+                    </p>
+                    <br>
+                    <p>
+                        By clicking on ‘<strong>Slide to Confirm</strong>’ you confirm that you have read, understand and accept all the above mentioned terms and conditions.
+                    </p>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+
+</body></html>
