@@ -890,4 +890,35 @@ https://jira.emiratesnbd.com/browse/TB-38123 | In Progress     | Not able to rep
         }, uiScrollBuilder || undefined);
     };
 
+public async findOperatingCountriesAndSelectData() {
+    await this.scrollAndPerformAction(async () => {
+        await this.textInputOperatingCountries.click();
+        await this.textCountryAlbania.click();
+    });
+}
+
+public async findContinueAndFillData() {
+    await this.scrollAndPerformAction(async () => {
+        await this.textInputNatureOfBusiness.click();
+        await this.textCropsCultivation.click();
+        await this.textInputBusinessTurnOver.click();
+        await this.textOwnershipPercentageValue.click();
+        await this.textInputBusinessActivities.click();
+        await this.textBasicBankingCards.click();
+        await this.btnContinue.click();
+    });
+}
+
+private async scrollAndPerformAction(action: () => Promise<void>) {
+    const uiScrollBuilder = await this.scrollViewUIBuilder;
+    try {
+        await new UiComponents().scrollDown(100, await this.btnContinue, action, async (error) => {
+            console.error('Error occurred during scroll action:', error);
+        }, uiScrollBuilder || undefined);
+    } catch (error) {
+        console.error('Error in scrollAndPerformAction:', error);
+    }
+}
+
+
 
