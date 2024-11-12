@@ -862,3 +862,32 @@ https://jira.emiratesnbd.com/browse/TB-38128 | Existing issue  | This is an exis
 https://jira.emiratesnbd.com/browse/TB-38123 | In Progress     | Not able to reproduce till now due to DAO drop-off. Will try to reproduce and verify.
 
 
+
+ public async findOperatingCountriesAndSelectData() {
+        const uiScrollBuilder = await this.scrollViewUIBuilder;
+        await new UiComponents().scrollDown(100, await this.btnContinue, async (_) => {
+            await this.textInputOperatingCountries.click();
+            await this.textCountryAlbania.click();
+        }, async (error) => {
+            console.log(error);
+        }, uiScrollBuilder || undefined);
+    };
+    
+    public async findContinueAndFillData() {
+        const uiScrollBuilder = await this.scrollViewUIBuilder;
+        await new UiComponents().scrollDown(100, await this.btnContinue, async (_) => {
+            // await this.textInputOperatingCountries.click();
+            // await this.textCountryAlbania.click();
+            await this.textInputNatureOfBusiness.click();
+            await this.textCropsCultivation.click();
+            await this.textInputBusinessTurnOver.click();
+            await this.textOwnershipPercentageValue.click();
+            await this.textInputBusinessActivities.click();
+            await this.textBasicBankingCards.click();
+            await this.btnContinue.click();
+        }, async (error) => {
+            console.log(error);
+        }, uiScrollBuilder || undefined);
+    };
+
+
