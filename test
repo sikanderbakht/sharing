@@ -944,6 +944,20 @@ async function scrollToBottom() {
   }
 }
 
+Hi Abhishek,
+
+I am writing to provide an update following today’s front-end automation meeting.
+
+Firstly, we’re progressing well according to our plan. We’ve successfully completed 3 stages of the resume journey. By the end of this sprint, we aim to complete 5 stages out of 11. In the following sprint, we plan to finalize the entire resume journey for both ENBD and EI.
+
+As discussed previously, we are accommodating the cumulative resume journey flow alongside the separate stages for resume completion. Additionally, we will work on improvements to the flow, such as retrieving data from an Excel sheet, as discussed. However, our primary focus remains on completing the happy flows for all major DAO journeys.
+
+One additional point is that we need to set up the front-end automation on QA machines to get it tested effectively.
+
+Attached is the plan for FE automation for your reference.
+
+Thank you,
+
 
 
 
