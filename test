@@ -920,5 +920,25 @@ private async scrollAndPerformAction(action: () => Promise<void>) {
     }
 }
 
+public async scrollToBottom() {
+    const uiScrollBuilder = await this.scrollViewUIBuilder; // Assuming this holds the scroll view or container
+    let lastScrollHeight = 0;
+    let currentScrollHeight = await uiScrollBuilder.getScrollHeight();
+
+    try {
+        while (lastScrollHeight !== currentScrollHeight) {
+            lastScrollHeight = currentScrollHeight;
+            await uiScrollBuilder.scrollTo(currentScrollHeight); // Scroll to the current height
+            await browser.pause(500); // Pause briefly to allow the UI to update
+            
+            // Get the new scroll height after scrolling
+            currentScrollHeight = await uiScrollBuilder.getScrollHeight();
+        }
+        console.log("Reached the bottom of the scroll view.");
+    } catch (error) {
+        console.error("Error scrolling to the bottom:", error);
+    }
+}
+
 
 
