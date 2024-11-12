@@ -920,25 +920,30 @@ private async scrollAndPerformAction(action: () => Promise<void>) {
     }
 }
 
-public async scrollToBottom() {
-    const uiScrollBuilder = await this.scrollViewUIBuilder; // Assuming this holds the scroll view or container
-    let lastScrollHeight = 0;
-    let currentScrollHeight = await uiScrollBuilder.getScrollHeight();
+async function scrollToBottom() {
+  const { height } = await driver.getWindowSize();
 
-    try {
-        while (lastScrollHeight !== currentScrollHeight) {
-            lastScrollHeight = currentScrollHeight;
-            await uiScrollBuilder.scrollTo(currentScrollHeight); // Scroll to the current height
-            await browser.pause(500); // Pause briefly to allow the UI to update
-            
-            // Get the new scroll height after scrolling
-            currentScrollHeight = await uiScrollBuilder.getScrollHeight();
-        }
-        console.log("Reached the bottom of the scroll view.");
-    } catch (error) {
-        console.error("Error scrolling to the bottom:", error);
-    }
+  while (true) {
+    const isAtBottom = await driver.execute(() => {
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = document.documentElement.scrollTop;
+      const clientHeight = document.documentElement.clientHeight;
+      return scrollTop + clientHeight >= scrollHeight;
+    });
+
+    if (isAtBottom) break;
+
+    // Perform the scroll by swiping from the middle to the bottom of the screen
+    await driver.touchAction([
+      { action: 'press', x: height / 2, y: height - 100 },
+      { action: 'moveTo', x: height / 2, y: 100 },
+      'release'
+    ]);
+
+    await driver.pause(500); // Short pause between scrolls
+  }
 }
+
 
 
 
