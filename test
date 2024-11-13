@@ -1,3 +1,227 @@
+package com.emiratesnbd.dao.ui.daotnc.bottomsheet
+
+import android.annotation.SuppressLint
+import android.app.Dialog
+import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
+import android.net.http.SslError
+import android.os.Bundle
+import android.text.TextUtils
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.webkit.SslErrorHandler
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.emiratesnbd.corex.uiutils.empty
+import com.emiratesnbd.corex.uiutils.extensions.updateProgressAndHide
+import com.emiratesnbd.corex.utils.core.webview.WebViewChromeClientSimple
+import com.emiratesnbd.corex.utils.core.webview.WebViewPageLoadProgressListener
+import com.emiratesnbd.feature.dao.R
+import com.emiratesnbd.feature.dao.databinding.FragmentDialogWebviewDaoBinding
+import com.enbd.uicomponents.components.webview.EnbdWebViewClient.Companion.PDF_FILE_EXTENSION
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+class DaoWebViewDialogFragment(
+    private val webViewUrl: String?,
+    val title: String?,
+    private val onAcceptClick: ((Boolean) -> Unit)?
+) : DaoBaseBottomSheetDialogFragment() {
+
+    companion object {
+        var isDialogShowing = false
+        private const val MAIL_TO = "mailto:"
+    }
+
+    lateinit var viewDataBinding: FragmentDialogWebviewDaoBinding
+
+    lateinit var injectedViewModel: DaoWebViewDialogViewModel
+
+    val viewModel: Class<DaoWebViewDialogViewModel>
+        get() = DaoWebViewDialogViewModel::class.java
+
+    fun getLayoutId() = R.layout.fragment_dialog_webview_dao
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        injectedViewModel = ViewModelProvider(this, viewModelFactory)[viewModel]
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        isCancelable = true
+        viewDataBinding = DataBindingUtil.inflate(
+            inflater, getLayoutId(), container, false
+        )
+        viewDataBinding.viewModel = injectedViewModel
+        return viewDataBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+
+        injectedViewModel.setupCustomV2Toolbar(
+            title = title ?: "",
+            rightButtonDrawable = com.emiratesnbd.corex.uiutils.R.drawable.ic_v2_close_button
+        )
+
+        injectedViewModel.onToolbarRightButtonClickEvent.observe(viewLifecycleOwner) {
+            dismiss()
+        }
+
+        viewDataBinding.buttonIAccept.setOnClickListener {
+            lifecycleScope.launch {
+                viewDataBinding.webView.evaluateJavascript(
+                    """
+                (function(){
+                var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(function(checkbox){
+                checkbox.checked = true;
+                });
+                })();
+            """.trimIndent(), null
+                )
+                delay(1000L)
+                onAcceptClick?.invoke(true)
+                dismiss()
+
+            }
+        }
+
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val webViewDialog = super.onCreateDialog(savedInstanceState)
+        webViewDialog.setOnShowListener {
+            isDialogShowing = true
+            val bottomSheetDialog = it as BottomSheetDialog
+            val parentLayout = bottomSheetDialog.findViewById<View>(
+                com.google.android.material.R.id.design_bottom_sheet
+            )
+            parentLayout?.let { bottomSheet ->
+                val behaviour = BottomSheetBehavior.from(bottomSheet)
+                val layoutParams = bottomSheet.layoutParams
+                layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+                bottomSheet.layoutParams = layoutParams
+                behaviour.state = BottomSheetBehavior.STATE_EXPANDED
+                behaviour.isDraggable = false
+            }
+        }
+        return webViewDialog
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        isDialogShowing = false
+    }
+
+    fun show(fragmentManager: FragmentManager?) {
+        fragmentManager?.let {
+            if (isDialogShowing.not()) {
+                show(fragmentManager, DaoWebViewDialogFragment::class.java.name)
+            }
+        }
+    }
+
+    private fun initView() {
+        val webSettings = viewDataBinding.webView.settings
+        webSettings.javaScriptEnabled = true
+        webSettings.domStorageEnabled = true
+        webSettings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
+        webSettings.javaScriptCanOpenWindowsAutomatically = true
+        webSettings.setSupportMultipleWindows(true)
+        webSettings.minimumFontSize = 1
+        webSettings.minimumLogicalFontSize = 1
+
+        viewDataBinding.webView.clearCache(true)
+        viewDataBinding.webView.webViewClient = webViewClient
+
+        viewDataBinding.webView.webChromeClient =
+            WebViewChromeClientSimple(object : WebViewPageLoadProgressListener {
+                override fun onProgressChanged(progress: Int) {
+                    viewDataBinding.contentLoadingProgressBar.updateProgressAndHide(progress)
+                }
+            })
+        if (!TextUtils.isEmpty(webViewUrl)) viewDataBinding.webView.loadUrl(webViewUrl.toString())
+    }
+
+    private val webViewClient: WebViewClient = object : WebViewClient() {
+
+        override fun onReceivedError(
+            view: WebView, request: WebResourceRequest, error: WebResourceError
+        ) {
+            super.onReceivedError(view, request, error)
+        }
+
+        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+            super.onPageStarted(view, url, favicon)
+        }
+
+        override fun onPageFinished(view: WebView?, url: String?) {
+            super.onPageFinished(view, url)
+            viewDataBinding.buttonIAccept.isEnabled = true
+
+        }
+
+        @SuppressLint("WebViewClientOnReceivedSslError")
+        override fun onReceivedSslError(
+            view: WebView?, handler: SslErrorHandler?, error: SslError?
+        ) {
+            handler?.proceed()
+        }
+
+        override fun shouldOverrideUrlLoading(
+            webView: WebView?,
+            webResourceRequest: WebResourceRequest?
+        ): Boolean {
+            webResourceRequest?.url?.toString()?.let { url ->
+                if (url.contains(MAIL_TO)) {
+                    val address = url.replaceFirst(MAIL_TO, String.empty)
+                    composeEmail(addresses = arrayOf(address), subject = null)
+                } else {
+                    webView?.context?.startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            webResourceRequest.url
+                        )
+                    )
+                }
+            }
+            return true
+        }
+    }
+
+    fun composeEmail(addresses: Array<String?>?, subject: String?) {
+        val intent = Intent(Intent.ACTION_SENDTO)
+        intent.data = Uri.parse(MAIL_TO)
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        subject?.let {
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject)
+        }
+        if (activity?.packageManager?.let { intent.resolveActivity(it) } != null) {
+            startActivity(intent)
+        }
+    }
+}
+
 it('should navigate to DAO Instruction screen when navigateToDaoInstruction is called', async () => {
         const daoButton = await driver.$('~navigateToDaoButton'); // Assuming you have a button or element to trigger this navigation
         await daoButton.click();
