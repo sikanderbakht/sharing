@@ -1,16 +1,13 @@
-public static getAppPackage(): string {
-        const entityPackageMap: { [key: string]: { ios: string, android: string } } = {
-            ENBD: { ios: process.env.BUNDLE_ID_EBI, android: process.env.APP_PACKAGE_ENBD },
-            EI: { ios: process.env.BUNDLE_ID_EIB, android: process.env.APP_PACKAGE_EI },
-            LIV: { ios: process.env.BUNDLE_ID_LIV, android: process.env.APP_PACKAGE_LIV }
-        };
-
-        const entity = process.env.ENTITY;
-        if (entity && entityPackageMap[entity]) {
-            return driver.isIOS ? entityPackageMap[entity].ios : entityPackageMap[entity].android;
+public static getAppPackage() {
+        if (process.env.ENTITY === 'ENBD') {
+            return driver.isIOS ? process.env.BUNDLE_ID_EBI ? process.env.BUNDLE_ID_EBI : '' : process.env.APP_PACKAGE_ENBD ? process.env.APP_PACKAGE_ENBD : '';
+        } else if (process.env.ENTITY === 'EI') {
+            return driver.isIOS ? process.env.BUNDLE_ID_EIB ? process.env.BUNDLE_ID_EIB : '' : process.env.APP_PACKAGE_EI ? process.env.APP_PACKAGE_EI : '';
+        } else if (process.env.ENTITY === 'LIV') {
+            return driver.isIOS ? process.env.BUNDLE_ID_LIV ? process.env.BUNDLE_ID_LIV : '' : process.env.APP_PACKAGE_LIV ? process.env.APP_PACKAGE_LIV : '';
+        } else {
+            return '';
         }
-
-        return '';
     }
 
 
