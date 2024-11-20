@@ -1,3 +1,15 @@
+Dear Abhishek,
+
+I hope this email finds you well. I am writing to provide an update on the progress we made during yesterday's meeting regarding front-end automation.
+
+As discussed, we have successfully delivered the happy flow for both ENBD and EI. We are now moving forward with the resume journey for both ENBD and EI. Initially, our plan was to complete 5 out of 11 stages of the resume journey, but we were able to complete 4 out of 11 stages this sprint. This is due to the inclusion of the accumulated resume journey in our current efforts.
+
+For this sprint, our goal is to complete all 11 stages. However, we may need a few extra days to finalize all 11 stages, including both the separate and accumulated resume journeys.
+
+Please feel free to reach out if you have any questions or need further clarification.
+
+Best regards,
+
 public static getAppPackage() {
     const entity = process.env.ENTITY;
     const isIOS = driver.isIOS;
